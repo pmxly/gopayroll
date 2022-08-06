@@ -1,0 +1,23 @@
+---
+#broker: 'redis://192.168.16.176:6379'
+broker: amqp://guest:guest@192.168.16.176:5672
+default_queue: boogoo_tasks_queue
+result_backend: 'redis://192.168.16.176:6379/15'
+results_expire_in: 3600
+amqp:
+  binding_key: boogoo_binding
+  exchange: boogoo_exchange
+  exchange_type: direct
+  #一个worker一次获取的消息数
+  prefetch_count: 5
+
+data_source:
+  driver_name: mysql
+  db_username: hzero
+  db_password: hzero
+  db_host: 192.168.16.176
+  db_port: 3306
+  db_schemas: ['hhr_foundation', 'hhr_payroll', 'hhr_corehr']
+  max_open_conn: 0
+  max_idle_conn: 0
+  show_sql: true
